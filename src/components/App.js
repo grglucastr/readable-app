@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
+import Categories from './Categories';
 
+import { handleInitialData } from '../actions/shared'
 
 class App extends Component {
+
+  componentDidMount(){
+    // handle initial data
+    this.props.dispatch(handleInitialData())
+  }
+
   render() {
     return (
       <div className="container">
@@ -15,7 +24,7 @@ class App extends Component {
 
           </div>
           <div className="col-sm-12 col-md-4">
-
+            <Categories/>
           </div>
         </div>
       </div>
@@ -23,4 +32,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App);
