@@ -4,17 +4,20 @@ import Categories from './Categories';
 import ContentList from './ContentList'
 
 import { handleInitialData } from '../actions/shared'
+import { handleLoadComments } from '../actions/comments'
 
 class App extends Component {
 
   componentDidMount(){
     // handle initial data
+    const postId = '8xf0y6ziyjabvozdd253nd'
     this.props.dispatch(handleInitialData())
+    this.props.dispatch(handleLoadComments(postId))
   }
 
   render() {
 
-    const { posts } = this.props
+    const { comments, posts } = this.props
       
     return (
       <div className="container">
@@ -36,9 +39,10 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({posts}){
+function mapStateToProps({comments, posts}){
    
   return {
+    comments,
     posts
   }
 }

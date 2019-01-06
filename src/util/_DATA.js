@@ -11,3 +11,8 @@ export function _getPosts(){
   const url = `${BASE_URL}/posts`
   return fetch(url, HEADERS)
 }
+
+export function _getComments(postId){
+  const url = `${BASE_URL}/posts/${postId}/comments`
+  return fetch(url, HEADERS)
+}
