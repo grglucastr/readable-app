@@ -1,10 +1,18 @@
-import { getCategories } from '../util/api'
 import { listCategories } from '../actions/categories'
+import { listPosts } from '../actions/posts'
+
+import { 
+  getCategories,
+  getPosts,
+} from '../util/api'
 
 export function handleInitialData(){
   return (dispatch) => {
-    getCategories().then(({categories}) => {
-      dispatch(listCategories(categories))
-    })
+    Promise
+      .all([getCategories(), getPosts()])
+      .then(([{categories}, posts]) => {        
+        dispatch(listCategories(categories))
+        dispatch(listPosts(posts))
+      })
   }
 }

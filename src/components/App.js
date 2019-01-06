@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import Categories from './Categories';
+import ContentList from './ContentList'
 
 import { handleInitialData } from '../actions/shared'
 
@@ -12,6 +13,9 @@ class App extends Component {
   }
 
   render() {
+
+    const { posts } = this.props
+      
     return (
       <div className="container">
         <div className="row">
@@ -21,7 +25,7 @@ class App extends Component {
         </div>
         <div className="row">
           <div className="col-sm-12 col-md-8">
-
+            <ContentList list={posts} title="Posts" />
           </div>
           <div className="col-sm-12 col-md-4">
             <Categories/>
@@ -32,4 +36,11 @@ class App extends Component {
   }
 }
 
-export default connect()(App);
+function mapStateToProps({posts}){
+   
+  return {
+    posts
+  }
+}
+
+export default connect(mapStateToProps)(App);
