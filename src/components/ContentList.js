@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import ContentListItem from './ContentListItem'
 
 class ContentList extends Component {
 
@@ -14,8 +14,7 @@ class ContentList extends Component {
           {
             list.map((item) => (
               <li key={item.id}>
-                {item.title ? <h4>{item.title}</h4> : ''}
-                <p>{item.body}</p>
+                <ContentListItem item={item} />
               </li>
             ))
           }
