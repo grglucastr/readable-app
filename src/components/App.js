@@ -20,7 +20,7 @@ class App extends Component {
 
   render() {
 
-    const { comments, posts } = this.props
+    const { posts } = this.props
       
     return (
       <Router>
@@ -52,10 +52,9 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({comments, posts}){
+function mapStateToProps({posts}){
    
   return {
-    comments,
     posts
   }
 }

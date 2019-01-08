@@ -1,5 +1,6 @@
 import React from 'react'
 import PostContent from './PostContent'
+import PostNewComment from './PostNewComment'
 import ContentList from './ContentList'
 
 import { connect } from 'react-redux'
@@ -20,6 +21,12 @@ class PostContainer extends React.Component {
         <div>
           <PostContent post={post}/>
         </div>
+
+        <div style={{marginTop: '20px'}}>
+          <PostNewComment commentCount={post.commentCount} />
+        </div>
+
+
 
         <div style={{marginTop: '20px'}}>
           {
