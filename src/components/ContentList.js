@@ -5,7 +5,7 @@ class ContentList extends Component {
 
   render () {
 
-    const { list, title } = this.props
+    const { list, title} = this.props
 
     return (
       <div>
@@ -14,11 +14,11 @@ class ContentList extends Component {
           {
             list.map((item) => (
               <li key={item.id}>
-                <ContentListItem item={item} />
+                <ContentListItem 
+                  item={item} />              
               </li>
             ))
           }
-          
         </ul>
       </div>
      )
