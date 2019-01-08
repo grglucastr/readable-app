@@ -9,7 +9,7 @@ class ContentList extends Component {
 
     return (
       <div>
-        <h2>{title}</h2>
+        <h5><strong>{title}</strong></h5>
         <ul>
           {
             list.map((item) => (
