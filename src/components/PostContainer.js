@@ -23,7 +23,7 @@ class PostContainer extends React.Component {
         </div>
 
         <div style={{marginTop: '20px'}}>
-          <PostNewComment commentCount={post.commentCount} />
+          <PostNewComment post={post} />
         </div>
 
 

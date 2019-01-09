@@ -16,3 +16,13 @@ export function _getComments(postId){
   const url = `${BASE_URL}/posts/${postId}/comments`
   return fetch(url, HEADERS)
 }
+
+export function _saveComment(comment) {
+  const url = `${BASE_URL}/comments/`
+  const request = {
+    method: 'post',
+    headers: {'Content-Type':'application/json', 'Authorization': 'jdskfj333'},
+    body: JSON.stringify(comment)
+  }
+  return fetch(url, request);
+}

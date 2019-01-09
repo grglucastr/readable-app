@@ -1,7 +1,8 @@
 import {
   _getCategories,
   _getPosts,
-  _getComments
+  _getComments,
+  _saveComment,
 } from './_DATA'
 
 export function getCategories(){
@@ -28,5 +29,13 @@ export function getComments(postId) {
     _getComments(postId)
       .then((response) => (resolve(response.json())))
       .catch((error) => (reject(error)))
+  })
+}
+
+export function saveComment(comment) {
+  return new Promise((resolve, reject) => {
+    _saveComment(comment)
+      .then((response) => resolve(response.json()))
+      .catch((error) => reject(error))
   })
 }
