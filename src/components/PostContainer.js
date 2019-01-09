@@ -2,10 +2,17 @@ import React from 'react'
 import PostContent from './PostContent'
 import PostNewComment from './PostNewComment'
 import ContentList from './ContentList'
+import { handleLoadComments } from '../actions/comments'
 
 import { connect } from 'react-redux'
 
 class PostContainer extends React.Component {
+
+  componentDidMount(){
+    const {id: postId} = this.props.match.params
+    this.props.dispatch(handleLoadComments(postId))
+    
+  }
 
   render(){
     const { post, comments } = this.props
@@ -40,13 +47,14 @@ class PostContainer extends React.Component {
 }
 
 function mapStateToProps({ posts, comments }, props){
+
   const { id } = props.match.params
   const post = posts.filter((post) => post.id === id)
-  const postComments = comments.filter(comment => comment.parentId === id)
+  
 
   return{
     post: post.length > 0 ? post[0] : {},
-    comments: postComments
+    comments
   }
 }
 
