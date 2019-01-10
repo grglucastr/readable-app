@@ -9,3 +9,21 @@
 .nav-links:hover{
   text-decoration: none;
 }
+
+.list-categories{
+  list-style: none;
+  padding: 0;
+}
+
+.list-categories li a{
+  display: block;
+  border:1px dotted cornflowerblue;
+  padding: 10px;
+  margin-bottom: 2px;
+  text-transform: capitalize;
+  text-decoration: none;
+}
+
+.list-categories li:hover a{
+  text-decoration: none;
+}
