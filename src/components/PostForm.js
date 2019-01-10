@@ -54,6 +54,9 @@ class PostForm extends Component {
   }
 
   render() {
+
+    const { categories } = this.props
+
     if(this.state.toHome === true){
       return (
         <Redirect to="/" />
@@ -91,14 +94,18 @@ class PostForm extends Component {
               <strong>Select Post Category:</strong>
             </label>
             <select 
-              className="form-control"
+              className="form-control combo-categories"
               name="category"
               value={this.state.post.category}
               onChange={(e) => this.handleInputChange(e)}>
                 <option value="">Choose Post Category</option>
-                <option value="1">React</option>
-                <option value="2">Redux</option>
-                <option value="3">Udacity</option>
+                {
+                  categories.map((category) => (
+                    <option value={category.path} key={category.path}>
+                        {category.name}
+                    </option>
+                  ))
+                }
             </select>
           </div>
 
@@ -129,5 +136,12 @@ class PostForm extends Component {
   }
 }
 
+function mapStateToProps({categories}){
+   
+  return{
+    categories
+  }
+}
 
-export default connect()(PostForm);
+
+export default connect(mapStateToProps)(PostForm);
