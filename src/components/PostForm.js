@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import {Redirect} from 'react-router-dom'
 import uuidv4 from 'uuid/v4'
+
+import { handleAddPost } from '../actions/posts';
 
 class PostForm extends Component {
 
@@ -11,7 +15,8 @@ class PostForm extends Component {
       author: '',
       category:'',
       body: '',
-    }
+    },
+    toHome:false
   }
 
   handleInputChange = (e) => {
@@ -32,6 +37,9 @@ class PostForm extends Component {
       return alert("Please, choose a valid category.")
     }
 
+    this.props.dispatch(handleAddPost(this.state.post))
+    this.setState({toHome: true})
+
     this.cleanFields()
   }
 
@@ -46,6 +54,11 @@ class PostForm extends Component {
   }
 
   render() {
+    if(this.state.toHome === true){
+      return (
+        <Redirect to="/" />
+      )
+    }
     return ( 
       <div>
         <hr/>
@@ -82,7 +95,7 @@ class PostForm extends Component {
               name="category"
               value={this.state.post.category}
               onChange={(e) => this.handleInputChange(e)}>
-                <option>Choose Post Category</option>
+                <option value="">Choose Post Category</option>
                 <option value="1">React</option>
                 <option value="2">Redux</option>
                 <option value="3">Udacity</option>
@@ -117,4 +130,4 @@ class PostForm extends Component {
 }
 
 
-export default PostForm;
+export default connect()(PostForm);

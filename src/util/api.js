@@ -1,9 +1,26 @@
 import {
-  _getCategories,
   _getPosts,
+  _savePost,
+  _getCategories,
   _getComments,
   _saveComment,
 } from './_DATA'
+
+export function getPosts() {
+  return new Promise((resolve, reject) => {
+    _getPosts()
+      .then((response) => (resolve(response.json())))
+      .catch((error) => (reject(error)))
+  })
+}
+
+export function savePost(post) {
+  return new Promise((resolve, reject) => {
+    _savePost(post)
+      .then((response) => resolve(response.json()))
+      .catch(error => reject(error))
+  })
+}
 
 export function getCategories(){
   return new Promise((resolve, reject) => {
@@ -13,14 +30,6 @@ export function getCategories(){
         resolve(cats)
       })
       .catch((error) => (reject(error)) )
-  })
-}
-
-export function getPosts() {
-  return new Promise((resolve, reject) => {
-    _getPosts()
-      .then((response) => (resolve(response.json())))
-      .catch((error) => (reject(error)))
   })
 }
 
