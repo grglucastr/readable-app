@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-
 import {connect} from 'react-redux'
+
 import Categories from './Categories';
 import ContentList from './ContentList'
 import PostContainer from './PostContainer'
@@ -19,10 +19,7 @@ class App extends Component {
     this.props.dispatch(handleInitialData())
   }
 
-  render() {
-
-    const { posts } = this.props
-      
+  render() {    
     return (
       <Router>
         <div className="container">
@@ -33,38 +30,32 @@ class App extends Component {
               </Link>
               
             </div>
-            <div className="col text-center">
+            <div className="col text-right">
               <Nav />
             </div>
           </div>
+
+          <div className="row">
+            <div className="col">
+              <hr/>
+            </div>
+          </div>
+
           <div className="row">
             <div className="col-sm-12 col-md-8">
-                <Route exact path='/' render={() => (
-                  <ContentList 
-                    title="Posts"
-                    list={posts} />
-                  )} 
-                />
+                <Route exact path='/' component={ContentList} />
+                <Route exact path='/:category/posts' component={ContentList} />
                 <Route path='/posts/:id' component={PostContainer} />
                 <Route path='/post' component={PostForm} />
-
             </div>
+            
             <div className="col-sm-12 col-md-4">
               <Categories/>
             </div>
           </div>
         </div>
-        
       </Router>
     );
   }
 }
-
-function mapStateToProps({posts}){
-   
-  return {
-    posts
-  }
-}
-
-export default connect(mapStateToProps)(App);
+export default connect()(App);

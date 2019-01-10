@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import ContentListItem from './ContentListItem'
 
 class ContentList extends Component {
@@ -12,12 +13,16 @@ class ContentList extends Component {
         <h5><strong>{title}</strong></h5>
         <ul>
           {
-            list.map((item) => (
-              <li key={item.id}>
-                <ContentListItem 
-                  item={item} />              
-              </li>
-            ))
+            (list.length === 0) ?
+            (<p>No content found...</p>) :
+            (
+              list.map((item) => (
+                <li key={item.id}>
+                  <ContentListItem 
+                    item={item} />              
+                </li>
+              ))
+            )
           }
         </ul>
       </div>
@@ -25,5 +30,22 @@ class ContentList extends Component {
   }
 }
 
+function mapStateToProps({posts}, props){
 
-export default ContentList
+  let customTitle = "Posts"
+  let customList = posts
+
+  if(props.match){
+    if(props.match.params.category){
+      const { category } = props.match.params 
+      customList = posts.filter((p) => p.category === category)
+    }
+  }
+  
+  return {
+    list: props.list ? props.list : customList,
+    title: props.title ? props.title : customTitle
+  }
+}
+
+export default connect(mapStateToProps)(ContentList)
