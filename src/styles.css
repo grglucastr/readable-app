@@ -10,12 +10,12 @@
   text-decoration: none;
 }
 
-.list-categories{
+.list-containers{
   list-style: none;
   padding: 0;
 }
 
-.list-categories li a{
+.list-containers li{
   display: block;
   border:1px dotted cornflowerblue;
   padding: 10px;
@@ -24,6 +24,6 @@
   text-decoration: none;
 }
 
-.list-categories li:hover a{
+.list-containers a:hover {
   text-decoration: none;
 }

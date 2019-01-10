@@ -11,7 +11,7 @@ class ContentList extends Component {
     return (
       <div>
         <h5><strong>{title}</strong></h5>
-        <ul>
+        <ul className="list-containers">
           {
             (list.length === 0) ?
             (<p>No content found...</p>) :

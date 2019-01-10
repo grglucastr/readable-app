@@ -10,12 +10,14 @@ class Categories extends Component {
     return (
       <div>
         <h5><strong>Filter By Categories</strong></h5>
-        <ul className="list-categories">
+        <ul className="list-containers">
           {
             categories.map((category) => (
-              <li key={category.name}>
-                  <Link to={`/${category.path}/posts`}>{category.name}</Link>  
-              </li>
+              <Link to={`/${category.path}/posts`} key={category.name}>
+                <li>
+                    {category.name}
+                </li>
+              </Link>
             ))
           }
         </ul>
