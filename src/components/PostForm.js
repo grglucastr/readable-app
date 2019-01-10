@@ -64,9 +64,9 @@ class PostForm extends Component {
     }
     return ( 
       <div>
-        <hr/>
+        <h5><strong>Post Form</strong></h5>
         <form onSubmit={(e) => this.handleFormSubmit(e)}>
-          <h5><strong>Post Form</strong></h5>
+          
           <div className="form-group">
             <input 
               type="text"

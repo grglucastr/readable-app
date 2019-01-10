@@ -39,6 +39,7 @@ function mapStateToProps({posts}, props){
     if(props.match.params.category){
       const { category } = props.match.params 
       customList = posts.filter((p) => p.category === category)
+      customTitle = `Posts related to: ${category}`
     }
   }
   
