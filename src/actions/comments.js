@@ -31,6 +31,7 @@ export function handleAddNewComment (comment){
     saveComment(comment)
     .then((response) => {
       dispatch(addComment(response))
+      alert('Comment posted!')
     })
     .catch((error) => {
       alert('An error occurred when posting comment, please try again.')

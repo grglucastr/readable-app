@@ -18,17 +18,24 @@ class PostNewComment extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
-  
+
     const  { id: parentId } = this.props.post
     const commentObj = {
       id: uuidv4(),
       timestamp: new Date().getTime(),
       ...this.state,
       parentId
-    }
-    
-    this.props.dispatch(handleAddNewComment(commentObj))
+    }    
 
+    this.props.dispatch(handleAddNewComment(commentObj))
+    this.cleanFields()
+  }
+
+  cleanFields() {
+    this.setState({
+      body: '',
+      author: ''
+    })
   }
 
   render() {
