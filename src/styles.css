@@ -27,3 +27,7 @@
 .list-containers a:hover {
   text-decoration: none;
 }
+
+.text-normal{
+  text-transform: none
+}
