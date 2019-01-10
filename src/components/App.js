@@ -10,6 +10,8 @@ import Nav from './Nav'
 import { handleInitialData } from '../actions/shared'
 import PostForm from './PostForm';
 
+import '../styles.css';
+
 class App extends Component {
 
   componentDidMount(){
@@ -26,12 +28,12 @@ class App extends Component {
         <div className="container">
           <div className="row">
             <div className="col">
-              <Link to="/">
+              <Link to="/" style={{textDecoration:'none'}}>
                 <h1>Readable App</h1>
               </Link>
               
             </div>
-            <div className="col">
+            <div className="col text-center">
               <Nav />
             </div>
           </div>
