@@ -2,6 +2,8 @@ import { savePost } from '../util/api'
 
 export const LIST_POSTS = 'LIST_POSTS'
 export const ADD_POST = 'ADD_POST'
+export const INCREASE_POST_SCORE = 'INCREASE_POST_SCORE'
+export const DECREASE_POST_SCORE = 'DECREASE_POST_SCORE'
 
 export function listPosts(posts) {
   return {
@@ -17,6 +19,20 @@ function addPost (post){
   }
 }
 
+function increasePostScore(post){
+  return{
+    type: INCREASE_POST_SCORE,
+    post
+  }
+}
+
+function decreasePostScore(post){
+  return {
+    type: DECREASE_POST_SCORE,
+    post
+  }
+}
+
 export function handleAddPost(post){
   return (dispatch) => {
     savePost(post)
@@ -25,5 +41,18 @@ export function handleAddPost(post){
         alert('Posted!')
       })
       .catch(() => (alert('An error occurred while trying to submit post.')))
+  }
+}
+
+
+export function handleIncreasePost(post) {
+  return (dispatch) => {
+    dispatch(increasePostScore(post))
+  }
+}
+
+export function handleDecreasePost(post) {
+  return (dispatch) => {
+    dispatch(decreasePostScore(post))
   }
 }

@@ -21,12 +21,9 @@ class PostContainer extends React.Component {
     return (
       <div>
         
-        <div className="text-right">
-          buttons goes here 
-        </div>
-
         <div>
           <PostContent post={post}/>
+          asdfas
         </div>
 
         <div style={{marginTop: '20px'}}>
