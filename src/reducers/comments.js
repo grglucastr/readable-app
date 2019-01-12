@@ -1,4 +1,9 @@
-import { LIST_COMMENTS, ADD_COMMENT } from '../actions/comments'
+import { 
+  LIST_COMMENTS, 
+  ADD_COMMENT,
+  INCREASE_COMMENT_SCORE,
+  DECREASE_COMMENT_SCORE
+ } from '../actions/comments'
 
 export default function comments (state = [], action) {
 
@@ -11,6 +16,15 @@ export default function comments (state = [], action) {
         ...state,
         action.comment
       ]
+    
+    case INCREASE_COMMENT_SCORE:
+    case DECREASE_COMMENT_SCORE:
+      return state.map((comment) => {
+        if(comment.id === action.comment.id){
+          return Object.assign({}, comment, {voteScore: action.comment.voteScore})
+        }
+        return comment
+      })
 
     default:
       return state

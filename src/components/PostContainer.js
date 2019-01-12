@@ -47,6 +47,9 @@ function mapStateToProps({ posts, comments }, props){
 
   const { id } = props.match.params
   const post = posts.filter((post) => post.id === id)
+
+  console.log('commentes', comments);
+  
   
 
   return{

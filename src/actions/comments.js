@@ -1,7 +1,14 @@
-import {getComments, saveComment} from '../util/api'
+import {
+  getComments, 
+  saveComment,
+  saveCommentUpVote,
+  saveCommentDownVote
+} from '../util/api'
 
 export const LIST_COMMENTS = 'LIST_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'
+export const INCREASE_COMMENT_SCORE = 'INCREASE_COMMENT_SCORE'
+export const DECREASE_COMMENT_SCORE = 'DECREASE_COMMENT_SCORE'
 
 function listComments (comments){
   return{
@@ -13,6 +20,20 @@ function listComments (comments){
 function addComment (comment){  
   return {
     type: ADD_COMMENT,
+    comment
+  }
+}
+
+function increaseCommentScore(comment) {
+  return {
+    type: INCREASE_COMMENT_SCORE,
+    comment
+  }
+}
+
+function decreaseCommentScore(comment) {
+  return {
+    type: DECREASE_COMMENT_SCORE,
     comment
   }
 }
@@ -36,6 +57,25 @@ export function handleAddNewComment (comment){
     .catch((error) => {
       alert('An error occurred when posting comment, please try again.')
     })
+  }
+}
+
+export function handleIncreaseComment(commentId) {
+  return (dispatch) => {
+    saveCommentUpVote(commentId)
+      .then((comment) => {
+        dispatch(increaseCommentScore(comment))
+        handleLoadComments(comment.parentId)
+      })
+      .catch(() => (alert('An error occurred during voting up. Please try again.')))
     
+  }
+}
+
+export function handleDecreaseComment(commentId) {
+  return (dispatch) => {
+    saveCommentDownVote(commentId)
+      .then((comment) => (dispatch(decreaseCommentScore(comment))))
+      .catch(() => (alert('An error occurred during voting up. Please try again.')))
   }
 }

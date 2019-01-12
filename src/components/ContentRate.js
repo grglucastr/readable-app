@@ -3,14 +3,15 @@ import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { handleIncreasePost, handleDecreasePost } from '../actions/posts';
+import { handleIncreaseComment, handleDecreaseComment } from '../actions/comments';
 
 class ContentRate extends Component {
 
   increaseScore(e){
     const { item } = this.props
     if(item.parentId){
-      // is comment
-      
+      this.props.dispatch(handleIncreaseComment(item.id))
+      return
     }
     
     //is post
@@ -20,10 +21,8 @@ class ContentRate extends Component {
 
   decreaseScore(e){
     const { item } = this.props
-    console.log('decrease', item);
-
     if(item.parentId){
-      // is comment
+      this.props.dispatch(handleDecreaseComment(item.id))
       return
     }
 
