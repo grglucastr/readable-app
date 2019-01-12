@@ -18,6 +18,17 @@ class PostNewComment extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
+    const { author, body } = this.state
+
+    if(author === ""){
+      alert('You must insert the author\'s name.');
+      return false;
+    }
+
+    if(body === ""){
+      alert('Comment box can\'t be empty.');
+      return false;
+    }
 
     const  { id: parentId } = this.props.post
     const commentObj = {
@@ -60,7 +71,7 @@ class PostNewComment extends Component {
               type="text"
               name="author"
               className="form-control"
-              placeholder="Author Name"
+              placeholder="Author Name (required)"
               style={{marginBottom: '10px'}}
               value={this.state.author}
               onChange={(event) => this.handleInputChange(event) }
@@ -70,7 +81,7 @@ class PostNewComment extends Component {
             <textarea 
               className="form-control"
               name="body"
-              placeholder="Enter your comment here"
+              placeholder="Enter your comment here (required)"
               value={this.state.body}
               onChange={(event) => this.handleInputChange(event)}
               />
