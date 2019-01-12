@@ -18,6 +18,46 @@ export function _savePost(post) {
   return fetch(url, request)
 }
 
+export function _savePostUpVote(postId) {
+  const url = `${BASE_URL}/posts/${postId}`
+  const request = {
+    method: 'post',
+    headers: {'Content-Type':'application/json', 'Authorization':'jai2jdi'},
+    body: JSON.stringify({option: "upVote"})
+  }
+  return fetch(url, request)
+}
+
+export function _savePostDownVote(postId){
+  const url = `${BASE_URL}/posts/${postId}`
+  const request = {
+    method: 'post',
+    headers: {'Content-Type': 'application/json', 'Authorization': 'ausdu23'},
+    body: JSON.stringify({option: "downVote"})
+  }
+  return fetch(url, request)
+}
+
+export function _saveCommentUpVote(commentId) {
+  const url = `${BASE_URL}/comments/${commentId}`
+  const request = {
+    method: 'post',
+    headers: {'Content-Type': 'application/json', 'Authorization': '99843jkl'},
+    body: JSON.stringify({option: "upVote"})
+  }
+  return fetch(url, request)
+}
+
+export function _saveCommentDownVote(commentId){
+  const url = `${BASE_URL}/comments/${commentId}`
+  const request = {
+    method: 'post',
+    headers: {'Content-Type': 'application/json', 'Authorization': '9uu848uf4'},
+    body: JSON.stringify({option: "downVote"})
+  }
+  return fetch(url, request)
+}
+
 export function _getCategories(){
   const url = `${BASE_URL}/categories` 
   return fetch(url, HEADERS)
