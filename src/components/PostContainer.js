@@ -46,11 +46,7 @@ class PostContainer extends React.Component {
 function mapStateToProps({ posts, comments }, props){
 
   const { id } = props.match.params
-  const post = posts.filter((post) => post.id === id)
-
-  console.log('commentes', comments);
-  
-  
+  const post = posts.filter((post) => post.id === id) 
 
   return{
     post: post.length > 0 ? post[0] : {},

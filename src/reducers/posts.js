@@ -18,21 +18,22 @@ export default function posts (state = [], action) {
         ...state,
         action.post
       ]
-    case INCREASE_POST_SCORE:
-      
+    case INCREASE_POST_SCORE:      
       return state.map((post) => {
         if(post.id === action.post.id){
           return Object.assign({}, post, {voteScore: action.post.voteScore})
         }
         return post
       })
-      
-      
+
     case DECREASE_POST_SCORE:
-      return [
-        ...state,
-        action.post
-      ]
+      return state.map((post) => {
+        if(post.id === action.post.id){
+          return Object.assign({}, post, {voteScore: action.post.voteScore})
+        }
+        return post
+      })
+
     default:
       return state
   }

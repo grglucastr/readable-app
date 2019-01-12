@@ -22,7 +22,7 @@ export function _savePostUpVote(postId) {
   const url = `${BASE_URL}/posts/${postId}`
   const request = {
     method: 'post',
-    headers: {'Content-Type':'application/json', 'Authorization':'jai2jdi'},
+    headers: {'Content-Type':'application/json', 'Authorization':'jdskfj333'},
     body: JSON.stringify({option: "upVote"})
   }
   return fetch(url, request)
@@ -32,7 +32,7 @@ export function _savePostDownVote(postId){
   const url = `${BASE_URL}/posts/${postId}`
   const request = {
     method: 'post',
-    headers: {'Content-Type': 'application/json', 'Authorization': 'ausdu23'},
+    headers: {'Content-Type': 'application/json', 'Authorization': 'jdskfj333'},
     body: JSON.stringify({option: "downVote"})
   }
   return fetch(url, request)
@@ -42,7 +42,7 @@ export function _saveCommentUpVote(commentId) {
   const url = `${BASE_URL}/comments/${commentId}`
   const request = {
     method: 'post',
-    headers: {'Content-Type': 'application/json', 'Authorization': '99843jkl'},
+    headers: {'Content-Type': 'application/json', 'Authorization': 'jdskfj333'},
     body: JSON.stringify({option: "upVote"})
   }
   return fetch(url, request)
@@ -52,7 +52,7 @@ export function _saveCommentDownVote(commentId){
   const url = `${BASE_URL}/comments/${commentId}`
   const request = {
     method: 'post',
-    headers: {'Content-Type': 'application/json', 'Authorization': '9uu848uf4'},
+    headers: {'Content-Type': 'application/json', 'Authorization': 'jdskfj333'},
     body: JSON.stringify({option: "downVote"})
   }
   return fetch(url, request)

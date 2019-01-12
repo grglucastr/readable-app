@@ -51,12 +51,16 @@ export function handleIncreasePost(postId) {
       .then((post) => {
         dispatch(increasePostScore(post))
       })
+      .catch(() => (alert('An error occurred during voting up. Please try again.')))
   }
 }
 
 export function handleDecreasePost(postId) {
   return (dispatch) => {
     savePostDownVote(postId)
-      .then((post) => dispatch(decreasePostScore(post)))
+      .then((post) => {
+        dispatch(decreasePostScore(post))
+      })
+      .catch(() => (alert('An error occurred during voting up. Please try again.')))
   }
 }

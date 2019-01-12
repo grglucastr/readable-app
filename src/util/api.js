@@ -37,7 +37,7 @@ export function savePostUpVote(postId) {
 export function savePostDownVote(postId) {
   return new Promise((resolve, reject) => {
     _savePostDownVote(postId)
-      .then((post) => resolve(post))
+      .then((post) => resolve(post.json()))
       .catch((error) => reject(error))
   })
 }
@@ -45,7 +45,7 @@ export function savePostDownVote(postId) {
 export function saveCommentUpVote(commentId) {
   return new Promise((resolve, reject) => {
     _saveCommentUpVote(commentId)
-      .then((comment) => resolve(comment))
+      .then((comment) => resolve(comment.json()))
       .catch((error) => reject(error))
   })
 }
@@ -53,7 +53,7 @@ export function saveCommentUpVote(commentId) {
 export function saveCommentDownVote(commentId) {
   return new Promise((resolve, reject) => {
     _saveCommentDownVote(commentId)
-      .then((comment) => resolve(comment))
+      .then((comment) => resolve(comment.json()))
       .catch((error) => reject(error))
   })
 }
