@@ -46,7 +46,6 @@ export function handleLoadComments (postId) {
   }
 }
 
-
 export function handleAddNewComment (comment){
   return (dispatch) => {
     saveComment(comment)

@@ -40,14 +40,14 @@ class PostNewComment extends Component {
 
   render() {
 
-    const { commentCount } = this.props.post
+    const { comments } = this.props
 
     return (
       <div>
         <h6>
           <strong>
             {
-              commentCount > 0 ?
+              comments.length > 0 ?
               'Comment this Post' :
               'Be the first to comment this Post'
             }
