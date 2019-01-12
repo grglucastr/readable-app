@@ -1,4 +1,4 @@
-import { savePost } from '../util/api'
+import { savePost, savePostUpVote, savePostDownVote } from '../util/api'
 
 export const LIST_POSTS = 'LIST_POSTS'
 export const ADD_POST = 'ADD_POST'
@@ -45,14 +45,18 @@ export function handleAddPost(post){
 }
 
 
-export function handleIncreasePost(post) {
+export function handleIncreasePost(postId) {
   return (dispatch) => {
-    dispatch(increasePostScore(post))
+    savePostUpVote(postId)
+      .then((post) => {
+        dispatch(increasePostScore(post))
+      })
   }
 }
 
-export function handleDecreasePost(post) {
+export function handleDecreasePost(postId) {
   return (dispatch) => {
-    dispatch(decreasePostScore(post))
+    savePostDownVote(postId)
+      .then((post) => dispatch(decreasePostScore(post)))
   }
 }
