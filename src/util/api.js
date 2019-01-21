@@ -1,6 +1,7 @@
 import {
   _getPosts,
   _savePost,
+  _deletePost,
   _savePostDownVote,
   _savePostUpVote,
   _getCategories,
@@ -23,6 +24,14 @@ export function savePost(post) {
     _savePost(post)
       .then((response) => resolve(response.json()))
       .catch(error => reject(error))
+  })
+}
+
+export function deletePost(postId) {
+  return new Promise((resolve, reject) => {
+    _deletePost(postId)
+      .then((response) => resolve(response.json()))
+      .catch((error) => reject(error))
   })
 }
 

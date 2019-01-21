@@ -3,7 +3,7 @@ import ContentRate from './ContentRate'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faPencilAlt, faTrashAlt} from '@fortawesome/free-solid-svg-icons'
 
-export default function PostContent({post}) {
+export default function PostContent({post, onDeletePost}) {
   return(
     <div>
       <div className="row">
@@ -20,7 +20,10 @@ export default function PostContent({post}) {
               <FontAwesomeIcon icon={faPencilAlt} />
             </button>
             &nbsp;
-            <button className="btn btn-danger" title="Delete this post">
+            <button 
+              className="btn btn-danger" 
+              title="Delete this post" 
+              onClick={() => onDeletePost()}>
               <FontAwesomeIcon icon={faTrashAlt} />
             </button>
           </div>

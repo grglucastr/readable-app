@@ -18,6 +18,15 @@ export function _savePost(post) {
   return fetch(url, request)
 }
 
+export function _deletePost(postId) {
+  const url = `${BASE_URL}/posts/${postId}`
+  const request = {
+    method: 'delete',
+    headers: {'Content-Type':'application/json', 'Authorization': 'jdskfj333'}
+  }
+  return fetch(url, request)
+}
+
 export function _savePostUpVote(postId) {
   const url = `${BASE_URL}/posts/${postId}`
   const request = {

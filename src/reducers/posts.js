@@ -1,6 +1,7 @@
 import { 
   LIST_POSTS, 
-  ADD_POST, 
+  ADD_POST,
+  REMOVE_POST, 
   INCREASE_POST_SCORE, 
   DECREASE_POST_SCORE } from '../actions/posts'
 
@@ -10,7 +11,7 @@ export default function posts (state = [], action) {
     case LIST_POSTS:
       return [
         ...state, 
-        ...action.posts
+        ...action.posts.filter(post => post.deleted === false)
       ]
       
     case ADD_POST:
@@ -18,6 +19,17 @@ export default function posts (state = [], action) {
         ...state,
         action.post
       ]
+
+    case REMOVE_POST:
+           
+      return state.map(post => {
+        if(post.id === action.post.id){
+          return action.post;
+        }
+        return post
+      })
+    
+
     case INCREASE_POST_SCORE:      
       return state.map((post) => {
         if(post.id === action.post.id){

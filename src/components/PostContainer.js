@@ -1,42 +1,60 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import PostContent from './PostContent'
 import PostNewComment from './PostNewComment'
 import ContentList from './ContentList'
 import { handleLoadComments } from '../actions/comments'
 
 import { connect } from 'react-redux'
+import { handleDeletePost } from '../actions/posts';
 
 class PostContainer extends React.Component {
 
   componentDidMount(){
     const {id: postId} = this.props.match.params
     this.props.dispatch(handleLoadComments(postId))
-    
+  }
+
+  handlePostDelete({ id }) {
+    const sureDelete = window.confirm("Are you sure you want to delete?")
+    if(sureDelete){
+      this.props.dispatch(handleDeletePost(id))
+      
+    }
   }
 
   render(){
     const { post, comments } = this.props
 
+    if(post.deleted){
+      alert('Post deleted!')
+      return <Redirect to="/" />
+    }
 
     return (
       <div>
         
         <div>
-          <PostContent post={post}/>
-          asdfas
+          <PostContent  
+            post={post}
+            onDeletePost={()=> this.handlePostDelete(post)} />
         </div>
 
         <div style={{marginTop: '20px'}}>
-          <PostNewComment post={post} comments={comments} />
+          <PostNewComment 
+            post={post} 
+            comments={comments} />
         </div>
-
-
 
         <div style={{marginTop: '20px'}}>
           {
-            comments.length > 0 && (<ContentList  list={this.props.comments}  title="Comments" />)
+            comments.length > 0 && 
+            (
+              <ContentList 
+                list={this.props.comments}
+                title="Comments" />
+            )
           }
-          
         </div>
       </div>
     )
@@ -44,7 +62,7 @@ class PostContainer extends React.Component {
 }
 
 function mapStateToProps({ posts, comments }, props){
-
+   
   const { id } = props.match.params
   const post = posts.filter((post) => post.id === id) 
 

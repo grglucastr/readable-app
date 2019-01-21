@@ -1,7 +1,13 @@
-import { savePost, savePostUpVote, savePostDownVote } from '../util/api'
+import {
+  getPosts, 
+  savePost,
+  deletePost, 
+  savePostUpVote, 
+  savePostDownVote } from '../util/api'
 
 export const LIST_POSTS = 'LIST_POSTS'
 export const ADD_POST = 'ADD_POST'
+export const REMOVE_POST = 'REMOVE_POST'
 export const INCREASE_POST_SCORE = 'INCREASE_POST_SCORE'
 export const DECREASE_POST_SCORE = 'DECREASE_POST_SCORE'
 
@@ -12,9 +18,16 @@ export function listPosts(posts) {
   }
 }
 
-function addPost (post){
+function addPost(post){
   return{
     type: ADD_POST,
+    post
+  }
+}
+
+function removePost(post){
+  return {
+    type: REMOVE_POST,
     post
   }
 }
@@ -33,6 +46,16 @@ function decreasePostScore(post){
   }
 }
 
+export function handleListPosts(){
+  return (dispatch) => {
+    getPosts()
+      .then((posts) => {
+        console.log('okay, gimme the posts', posts);
+        dispatch(listPosts(posts))
+      })
+  }
+}
+
 export function handleAddPost(post){
   return (dispatch) => {
     savePost(post)
@@ -44,14 +67,13 @@ export function handleAddPost(post){
   }
 }
 
-
 export function handleIncreasePost(postId) {
   return (dispatch) => {
     savePostUpVote(postId)
       .then((post) => {
         dispatch(increasePostScore(post))
       })
-      .catch(() => (alert('An error occurred during voting up. Please try again.')))
+      .catch(() => (alert('An error occurred while voting up. Please try again.')))
   }
 }
 
@@ -61,6 +83,16 @@ export function handleDecreasePost(postId) {
       .then((post) => {
         dispatch(decreasePostScore(post))
       })
-      .catch(() => (alert('An error occurred during voting up. Please try again.')))
+      .catch(() => (alert('An error occurred while voting down. Please try again.')))
+  }
+}
+
+export function handleDeletePost(postId){
+  return (dispatch) => {
+    deletePost(postId)
+      .then((postDeleted) => {
+        dispatch(removePost(postDeleted))
+      })
+      .catch(() => (alert('An error occurred while deleting. Please try again.')))
   }
 }
