@@ -4,6 +4,19 @@ import ContentListItem from './ContentListItem'
 
 class ContentList extends Component {
 
+  state = {
+    contentTitle: 'Posts'
+  }
+
+  componentDidMount(){
+    if(this.props.match){
+      if(this.props.match.params.category) {
+        console.log('fetch by category bro, its better');   
+      }
+    }
+    
+  }
+
   render () {
 
     const { list, title} = this.props
@@ -30,7 +43,14 @@ class ContentList extends Component {
   }
 }
 
-function mapStateToProps({posts}, props){
+function mapStateToProps({posts, comments}, props){
+
+  if(comments.length > 0) {
+    return {
+      list: comments,
+      title: "Post comments"
+    }
+  }
 
   let customTitle = "Posts"
   let customList = posts
@@ -38,8 +58,7 @@ function mapStateToProps({posts}, props){
   if(props.match){
     if(props.match.params.category){
       const { category } = props.match.params 
-      customList = posts.filter((p) => p.category === category)
-      customTitle = `Posts related to: ${category}`
+      customTitle = `Posts related to: ${category}`     
     }
   }
   
