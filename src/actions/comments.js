@@ -9,6 +9,7 @@ export const LIST_COMMENTS = 'LIST_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const INCREASE_COMMENT_SCORE = 'INCREASE_COMMENT_SCORE'
 export const DECREASE_COMMENT_SCORE = 'DECREASE_COMMENT_SCORE'
+export const CLEAR_COMMENTS_LIST = 'CLEAR_COMMENTS_LIST'
 
 function listComments (comments){
   return{
@@ -35,6 +36,13 @@ function decreaseCommentScore(comment) {
   return {
     type: DECREASE_COMMENT_SCORE,
     comment
+  }
+}
+
+export function clearCommentList(){
+  return{
+    type: CLEAR_COMMENTS_LIST,
+    comments: []
   }
 }
 

@@ -2,7 +2,8 @@ import {
   LIST_COMMENTS, 
   ADD_COMMENT,
   INCREASE_COMMENT_SCORE,
-  DECREASE_COMMENT_SCORE
+  DECREASE_COMMENT_SCORE,
+  CLEAR_COMMENTS_LIST
  } from '../actions/comments'
 
 export default function comments (state = [], action) {
@@ -25,6 +26,9 @@ export default function comments (state = [], action) {
         }
         return comment
       })
+
+    case CLEAR_COMMENTS_LIST: 
+      return action.comments
 
     default:
       return state
