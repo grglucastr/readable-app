@@ -11,12 +11,12 @@ import { handleInitialData } from '../actions/shared'
 import PostForm from './PostForm';
 
 import '../styles.css';
+import Home from './Home';
 
 class App extends Component {
 
   componentDidMount(){
-    // handle initial data
-    this.props.dispatch(handleInitialData())
+    this.props.dispatch(handleInitialData())    
   }
 
   render() {    
@@ -43,8 +43,8 @@ class App extends Component {
 
           <div className="row">
             <div className="col-sm-12 col-md-8">
-                <Route exact path='/' component={ContentList} />
-                <Route exact path='/:category/posts' component={ContentList} />
+                <Route exact path='/' component={Home} />
+                <Route path='/:category/posts' component={ContentList} />
                 <Route path='/posts/:id' component={PostContainer} />
                 <Route path='/post' component={PostForm} />
             </div>

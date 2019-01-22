@@ -7,18 +7,8 @@ class ContentList extends Component {
   state = {
     contentTitle: 'Posts'
   }
-
-  componentDidMount(){
-    if(this.props.match){
-      if(this.props.match.params.category) {
-        console.log('fetch by category bro, its better');   
-      }
-    }
-    
-  }
-
+ 
   render () {
-
     const { list, title} = this.props
 
     return (
@@ -54,13 +44,6 @@ function mapStateToProps({posts, comments}, props){
 
   let customTitle = "Posts"
   let customList = posts
-
-  if(props.match){
-    if(props.match.params.category){
-      const { category } = props.match.params 
-      customTitle = `Posts related to: ${category}`     
-    }
-  }
   
   return {
     list: props.list ? props.list : customList,

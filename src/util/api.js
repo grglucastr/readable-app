@@ -1,5 +1,6 @@
 import {
   _getPosts,
+  _getPostsByCategory,
   _savePost,
   _deletePost,
   _savePostDownVote,
@@ -17,6 +18,15 @@ export function getPosts() {
       .then((response) => (resolve(response.json())))
       .catch((error) => (reject(error)))
   })
+}
+
+export function getPostsByCategory(category){
+  return new Promise ((resolve, reject) => {
+    _getPostsByCategory(category)
+      .then((response) => resolve(response.json()))
+      .catch((error) => reject(error))
+  })
+
 }
 
 export function savePost(post) {

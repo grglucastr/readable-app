@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { handleListPostsCategory } from '../actions/posts'
 
 class Categories extends Component {
 
@@ -13,7 +14,7 @@ class Categories extends Component {
         <ul className="list-containers">
           {
             categories.map((category) => (
-              <Link to={`/${category.path}/posts`} key={category.name}>
+              <Link to={`/${category.path}/posts`} key={category.name} onClick={() => this.props.onCategoryClick(category.name)}>
                 <li>
                     {category.name}
                 </li>
@@ -32,4 +33,13 @@ function mapStateToProps({categories}){
   }
 }
 
-export default connect(mapStateToProps)(Categories)
+function mapDispatchToProps(dispatch){
+  return {
+    onCategoryClick: (category) => {
+      dispatch(handleListPostsCategory(category))
+    }
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Categories)

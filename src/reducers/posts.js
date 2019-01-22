@@ -9,10 +9,7 @@ import {
 export default function posts (state = [], action) {
   switch(action.type){
     case LIST_POSTS:
-      return [
-        ...state, 
-        ...action.posts.filter(post => post.deleted === false)
-      ]
+      return action.posts
       
     case ADD_POST:
       return [
