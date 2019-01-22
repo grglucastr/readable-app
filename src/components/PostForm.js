@@ -33,8 +33,20 @@ class PostForm extends Component {
   handleFormSubmit = (e) => {
     e.preventDefault()    
   
+    if(this.state.post.title === ""){
+      return alert("Title field cannot be empty.")
+    }
+
+    if(this.state.post.author === ""){
+      return alert("Author field cannot be empty.")
+    }
+
     if(this.state.post.category === ""){
       return alert("Please, choose a valid category.")
+    }
+
+    if(this.state.post.body === ""){
+      return alert("Content box cannot be empty.")
     }
 
     this.props.dispatch(handleAddPost(this.state.post))
