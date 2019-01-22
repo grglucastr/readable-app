@@ -14,7 +14,10 @@ class Categories extends Component {
         <ul className="list-containers">
           {
             categories.map((category) => (
-              <Link to={`/${category.path}/posts`} key={category.name} onClick={() => this.props.onCategoryClick(category.name)}>
+              <Link 
+                to={`/${category.path}/posts`} 
+                key={category.name} 
+                onClick={() => this.props.onCategoryClick(category.name)}>
                 <li>
                     {category.name}
                 </li>

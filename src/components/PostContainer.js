@@ -40,13 +40,19 @@ class PostContainer extends React.Component {
           <PostContent post={post} onDeletePost={()=> this.handlePostDelete(post)} />
         </div>
 
-        <div style={{marginTop: '20px'}}>
+        <div>
+          <hr/>
+        </div>
+
+        <div style={{marginTop: '20px', padding:'10px', background:'#ccc'}}>
+          { comments.length > 0 && ( <ContentList  /> ) }
+        </div>
+
+        <div style={{marginTop: '20px', padding:'10px', background:'#ccc'}}>
           <PostNewComment post={post} comments={comments} />
         </div>
 
-        <div style={{marginTop: '20px'}}>
-          { comments.length > 0 && ( <ContentList  /> ) }
-        </div>
+        
       </div>
     )
   }
