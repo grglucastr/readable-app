@@ -1,13 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class SortContentList extends Component {
-  render() {
-    return (
-      <div>
-        Sort Content List Component here
-      </div>
-    )
-  }
-}
+const SortContentList = () => (
+  <div>
+    Sort Content List Component here
+  </div>
+)
 
 export default SortContentList
