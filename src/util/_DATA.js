@@ -12,6 +12,11 @@ export function _getPostsByCategory(category){
   return fetch(url, HEADERS)
 }
 
+export function _getPostById(postId) {
+  const url = `${BASE_URL}/posts/${postId}`
+  return fetch(url, HEADERS)
+}
+
 export function _savePost(post) {
   const url = `${BASE_URL}/posts`
   const request = {

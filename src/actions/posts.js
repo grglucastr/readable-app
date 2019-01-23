@@ -1,14 +1,16 @@
 import {
   getPosts,
   getPostsByCategory, 
+  getPostById,
   savePost,
   deletePost, 
   savePostUpVote, 
-  savePostDownVote } from '../util/api'
+  savePostDownVote} from '../util/api'
 
 export const LIST_POSTS = 'LIST_POSTS'
 export const LIST_POSTS_BY_CATEGORY = 'LIST_POSTS_BY_CATEGORY'
 export const ADD_POST = 'ADD_POST'
+export const GET_POST_BY_ID = 'GET_POST_BY_ID'
 export const REMOVE_POST = 'REMOVE_POST'
 export const INCREASE_POST_SCORE = 'INCREASE_POST_SCORE'
 export const DECREASE_POST_SCORE = 'DECREASE_POST_SCORE'
@@ -65,6 +67,14 @@ export function handleListPostsCategory(category){
         dispatch(listPosts(posts)) 
       })
       .catch((error) => (alert('An error occurred while trying to fetch posts by category. Please try again.')))
+  }
+}
+
+export function handleGetPostById(postId) {
+  return (dispatch) => {
+    getPostById(postId).then((post) => {
+      dispatch(listPosts([post]))
+    })
   }
 }
 

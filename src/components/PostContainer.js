@@ -6,13 +6,14 @@ import ContentList from './ContentList'
 import { handleLoadComments, clearCommentList } from '../actions/comments'
 
 import { connect } from 'react-redux'
-import { handleDeletePost } from '../actions/posts';
+import { handleDeletePost, handleGetPostById } from '../actions/posts';
 
 class PostContainer extends React.Component {
 
   componentDidMount(){
     const {id: postId} = this.props.match.params
     this.props.dispatch(handleLoadComments(postId))
+    this.props.dispatch(handleGetPostById(postId))
   }
 
   componentWillUnmount(){
@@ -61,12 +62,10 @@ class PostContainer extends React.Component {
   }
 }
 
-function mapStateToProps({ posts, comments }, props){
-  const { id } = props.match.params
-  const post = posts.filter((post) => post.id === id) 
-
+function mapStateToProps({ posts, comments }){
+ 
   return{
-    post: post.length > 0 ? post[0] : {},
+    post: posts.length > 0 ? posts[0] : {},
     comments
   }
 }

@@ -7,9 +7,6 @@ class ContentList extends Component {
   render () {
     const { list, title} = this.props
 
-    console.log('list', list);
-    
-
     return (
       <div>
         <h5><strong>{title}</strong></h5>
