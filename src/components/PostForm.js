@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import uuidv4 from 'uuid/v4'
 
-import { handleAddPost, handleGetPostById, handleUpdatePost } from '../actions/posts';
+import { handleAddPost, handleUpdatePost } from '../actions/posts';
 import { getPostById } from '../util/api'
 
 class PostForm extends Component {
