@@ -3,6 +3,7 @@ import {
   _getPostsByCategory,
   _getPostById,
   _savePost,
+  _editPost,
   _deletePost,
   _savePostDownVote,
   _savePostUpVote,
@@ -43,6 +44,14 @@ export function savePost(post) {
     _savePost(post)
       .then((response) => resolve(response.json()))
       .catch(error => reject(error))
+  })
+}
+
+export function editPost(post) {
+  return new Promise((resolve, reject) => {
+    _editPost(post)
+      .then((response) => resolve(response.json))
+      .catch((error) => reject(error))
   })
 }
 

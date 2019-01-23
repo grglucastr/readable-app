@@ -3,6 +3,7 @@ import {
   getPostsByCategory, 
   getPostById,
   savePost,
+  editPost, 
   deletePost, 
   savePostUpVote, 
   savePostDownVote} from '../util/api'
@@ -11,6 +12,7 @@ export const LIST_POSTS = 'LIST_POSTS'
 export const LIST_POSTS_BY_CATEGORY = 'LIST_POSTS_BY_CATEGORY'
 export const ADD_POST = 'ADD_POST'
 export const GET_POST_BY_ID = 'GET_POST_BY_ID'
+export const UPDATE_POST = 'UPDATE_POST'
 export const REMOVE_POST = 'REMOVE_POST'
 export const INCREASE_POST_SCORE = 'INCREASE_POST_SCORE'
 export const DECREASE_POST_SCORE = 'DECREASE_POST_SCORE'
@@ -25,6 +27,13 @@ export function listPosts(posts) {
 function addPost(post){
   return{
     type: ADD_POST,
+    post
+  }
+}
+
+function updatePost(post){
+  return {
+    type: UPDATE_POST,
     post
   }
 }
@@ -86,6 +95,20 @@ export function handleAddPost(post){
         alert('Posted!')
       })
       .catch(() => (alert('An error occurred while trying to submit post.')))
+  }
+}
+
+export function handleUpdatePost(post) {
+  return (dispatch) => {
+    editPost(post)
+    .then((postUpdated) => {
+      dispatch(updatePost(postUpdated))
+      alert('Post Updated!')
+    })
+    .catch((error) => {
+      console.log(error)
+      alert(`An error occurred while updating, please try again.`)
+    })
   }
 }
 

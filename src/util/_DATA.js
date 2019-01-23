@@ -28,6 +28,16 @@ export function _savePost(post) {
   return fetch(url, request)
 }
 
+export function _editPost(post){
+  const url = `${BASE_URL}/posts/${post.id}`
+  const request = {
+    method: 'put',
+    headers: {'Content-Type':'application/json', 'Authorization': 'jdskfj333'},
+    body: JSON.stringify(post)
+  }
+  return fetch(url, request)
+}
+
 export function _deletePost(postId) {
   const url = `${BASE_URL}/posts/${postId}`
   const request = {

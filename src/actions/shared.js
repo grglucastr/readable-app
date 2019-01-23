@@ -1,5 +1,4 @@
 import { listCategories } from '../actions/categories'
-import { listPosts } from '../actions/posts'
 
 import { 
   getCategories,
@@ -10,9 +9,8 @@ export function handleInitialData(){
   return (dispatch) => {
     Promise
       .all([getCategories(), getPosts()])
-      .then(([{categories}, posts]) => {        
+      .then(([{categories}]) => {        
         dispatch(listCategories(categories))
-        dispatch(listPosts(posts))
       })
   }
 }

@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import uuidv4 from 'uuid/v4'
 
-import { handleAddPost, handleGetPostById } from '../actions/posts';
+import { handleAddPost, handleGetPostById, handleUpdatePost } from '../actions/posts';
+import { getPostById } from '../util/api'
 
 class PostForm extends Component {
 
@@ -16,15 +17,20 @@ class PostForm extends Component {
       category:'',
       body: '',
     },
+    isEditing: false,
+    toPostDetail: false,
     toHome:false
   }
 
   componentDidMount() {
     const { id } = this.props.match.params
     if( id ){
-      this.props.dispatch(handleGetPostById(id))
-      const { post } = this.props
-      this.setState({post})
+      getPostById(id).then((post) => {
+        this.setState({
+          isEditing: true,
+          post
+        })
+      })
     }    
   }
 
@@ -58,6 +64,12 @@ class PostForm extends Component {
       return alert("Content box cannot be empty.")
     }
 
+    if( this.state.isEditing ){
+      this.props.dispatch(handleUpdatePost(this.state.post))
+      this.setState({toPostDetail: true})
+      return 
+    }
+
     this.props.dispatch(handleAddPost(this.state.post))
     this.setState({toHome: true})
 
@@ -83,6 +95,14 @@ class PostForm extends Component {
         <Redirect to="/" />
       )
     }
+
+    if( this.state.toPostDetail === true ){
+      return (
+        <Redirect to={`/posts/${this.state.post.id}`} />
+      )
+    }
+
+
     return ( 
       <div>
         <h5><strong>Post Form</strong></h5>
@@ -146,7 +166,9 @@ class PostForm extends Component {
           <div className="form-group text-right">
             <button
               className="btn btn-primary">
-              Submit Post
+              {
+                this.state.isEditing ? 'Update Post' : 'Submit Post'
+              }
             </button>
 
           </div>
@@ -157,11 +179,9 @@ class PostForm extends Component {
   }
 }
 
-function mapStateToProps({posts, categories}){
-   
+function mapStateToProps({categories}){
   return{
     categories,
-    post: posts.length > 0 ? posts[0] : {}
   }
 }
 
