@@ -17,10 +17,16 @@ class Home extends Component {
         <div className="text-right">
           <SortContentList />
         </div>
-        <ContentList /> 
+        <ContentList title="Posts" list={this.props.posts} /> 
       </div>
     )
   }
 }
 
-export default connect()(Home);
+function mapStateToProps({posts}){
+  return {
+    posts
+  }
+}
+
+export default connect(mapStateToProps)(Home);

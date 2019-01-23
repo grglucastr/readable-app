@@ -49,7 +49,7 @@ class PostContainer extends React.Component {
           comments.length > 0 && 
           (
             <div style={{marginTop: '20px', padding:'10px', background:'#ccc'}}>
-              <ContentList  />
+              <ContentList title="Comments" list={comments}  />
             </div>
           )
         }

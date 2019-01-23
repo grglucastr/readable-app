@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import ContentListItem from './ContentListItem'
 
 class ContentList extends Component {
@@ -28,22 +27,4 @@ class ContentList extends Component {
   }
 }
 
-function mapStateToProps({posts, comments}, props){
-
-  if(comments.length > 0) {
-    return {
-      list: comments,
-      title: "Comments"
-    }
-  }
-
-  let customTitle = "Posts"
-  let customList = posts
-  
-  return {
-    list: props.list ? props.list : customList,
-    title: props.title ? props.title : customTitle
-  }
-}
-
-export default connect(mapStateToProps)(ContentList)
+export default ContentList

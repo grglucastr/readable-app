@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
 import ContentList from './ContentList';
 import SortContentList from './SortContentList';
 
 class PostsByCategory extends Component {
-
-
   render() {
     return (
       <div>
@@ -13,13 +13,21 @@ class PostsByCategory extends Component {
           <SortContentList />
         </div>
 
-        <ContentList />
+        <ContentList title={this.props.title} list={this.props.posts}  />
       </div>
     )
   }
-
-
-
 }
 
-export default PostsByCategory
+function mapStateToProps({posts}, props){
+
+  const { category } = props.match.params
+  const title  = `Posts Related to "${category}"`
+
+  return {
+    posts,
+    title
+  }
+}
+
+export default connect(mapStateToProps)(PostsByCategory)
