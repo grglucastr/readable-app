@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import ContentList from './ContentList'
+import SortContentList from './SortContentList'
 import {handleListPosts} from '../actions/posts'
 
 class Home extends Component {
@@ -11,7 +12,14 @@ class Home extends Component {
   }
 
   render() {
-    return ( <ContentList /> )
+    return ( 
+      <div>
+        <div className="text-right">
+          <SortContentList />
+        </div>
+        <ContentList /> 
+      </div>
+    )
   }
 }
 

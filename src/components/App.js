@@ -3,15 +3,17 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import {connect} from 'react-redux'
 
 import Categories from './Categories';
-import ContentList from './ContentList'
-import PostContainer from './PostContainer'
+import PostsByCategory from './PostsByCategory';
+import Home from './Home';
 import Nav from './Nav'
+import PostContainer from './PostContainer'
+
 
 import { handleInitialData } from '../actions/shared'
 import PostForm from './PostForm';
 
 import '../styles.css';
-import Home from './Home';
+
 
 class App extends Component {
 
@@ -44,7 +46,7 @@ class App extends Component {
           <div className="row">
             <div className="col-sm-12 col-md-8">
                 <Route exact path='/' component={Home} />
-                <Route path='/:category/posts' component={ContentList} />
+                <Route path='/:category/posts' component={PostsByCategory} />
                 <Route path='/posts/:id' component={PostContainer} />
                 <Route path='/post/:id?' component={PostForm} />
             </div>
