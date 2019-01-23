@@ -44,15 +44,18 @@ class PostContainer extends React.Component {
           <hr/>
         </div>
 
-        <div style={{marginTop: '20px', padding:'10px', background:'#ccc'}}>
-          { comments.length > 0 && ( <ContentList  /> ) }
-        </div>
+        { 
+          comments.length > 0 && 
+          (
+            <div style={{marginTop: '20px', padding:'10px', background:'#ccc'}}>
+              <ContentList  />
+            </div>
+          )
+        }
 
         <div style={{marginTop: '20px', padding:'10px', background:'#ccc'}}>
           <PostNewComment post={post} comments={comments} />
-        </div>
-
-        
+        </div>        
       </div>
     )
   }
