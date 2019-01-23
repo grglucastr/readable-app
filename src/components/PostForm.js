@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import uuidv4 from 'uuid/v4'
 
-import { handleAddPost } from '../actions/posts';
+import { handleAddPost, handleGetPostById } from '../actions/posts';
 
 class PostForm extends Component {
 
@@ -17,6 +17,15 @@ class PostForm extends Component {
       body: '',
     },
     toHome:false
+  }
+
+  componentDidMount() {
+    const { id } = this.props.match.params
+    if( id ){
+      this.props.dispatch(handleGetPostById(id))
+      const { post } = this.props
+      this.setState({post})
+    }    
   }
 
   handleInputChange = (e) => {
@@ -148,10 +157,11 @@ class PostForm extends Component {
   }
 }
 
-function mapStateToProps({categories}){
+function mapStateToProps({posts, categories}){
    
   return{
-    categories
+    categories,
+    post: posts.length > 0 ? posts[0] : {}
   }
 }
 

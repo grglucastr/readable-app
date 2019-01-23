@@ -46,7 +46,7 @@ class App extends Component {
                 <Route exact path='/' component={Home} />
                 <Route path='/:category/posts' component={ContentList} />
                 <Route path='/posts/:id' component={PostContainer} />
-                <Route path='/post' component={PostForm} />
+                <Route path='/post/:id?' component={PostForm} />
             </div>
             
             <div className="col-sm-12 col-md-4">

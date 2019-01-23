@@ -2,6 +2,7 @@ import React from 'react'
 import ContentRate from './ContentRate'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faPencilAlt, faTrashAlt} from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 
 export default function PostContent({post, onDeletePost}) {
   return(
@@ -16,9 +17,11 @@ export default function PostContent({post, onDeletePost}) {
           </p>
           
           <div>
-            <button className="btn btn-info" title="Edit this post">
+            
+            <Link to={`/post/${post.id}`} className="btn btn-info" title="Edit this post" >
               <FontAwesomeIcon icon={faPencilAlt} />
-            </button>
+            </Link>
+
             &nbsp;
             <button 
               className="btn btn-danger" 
