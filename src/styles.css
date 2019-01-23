@@ -31,3 +31,9 @@
 .text-normal{
   text-transform: none
 }
+
+.date-posted{
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}

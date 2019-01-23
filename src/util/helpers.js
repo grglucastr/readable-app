@@ -1,4 +1,4 @@
-export function formatDate ( timestamp ){
+export function formatFullDate ( timestamp ){
 
   const date = new Date(timestamp)
   
@@ -7,6 +7,16 @@ export function formatDate ( timestamp ){
   const hoursMinute = getHoursMinute(date)
 
   const dateStr = `${dayName}, ${monthName} ${date.getDate()}, ${date.getFullYear()} ${hoursMinute}`
+
+  return dateStr
+}
+
+export function formatSimpleDate ( timestamp ) {
+
+  const date = new Date(timestamp)
+  
+  const monthName = getMonthName(date.getMonth())
+  const dateStr = `${monthName} ${date.getDate()}, ${date.getFullYear()}`
 
   return dateStr
 }

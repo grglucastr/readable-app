@@ -3,7 +3,7 @@ import ContentRate from './ContentRate'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faPencilAlt, faTrashAlt} from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
-import { formatDate } from '../util/helpers'
+import { formatFullDate } from '../util/helpers'
 
 export default function PostContent({post, onDeletePost}) {
   return(
@@ -14,7 +14,7 @@ export default function PostContent({post, onDeletePost}) {
           
           <p>
             Author: <strong> { post.author} </strong> <br />
-            Posted on: <strong> { formatDate(post.timestamp) } </strong>
+            Posted on: <strong> { formatFullDate(post.timestamp) } </strong>
           </p>
           
           <div>
