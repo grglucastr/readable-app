@@ -16,10 +16,42 @@ export const UPDATE_POST = 'UPDATE_POST'
 export const REMOVE_POST = 'REMOVE_POST'
 export const INCREASE_POST_SCORE = 'INCREASE_POST_SCORE'
 export const DECREASE_POST_SCORE = 'DECREASE_POST_SCORE'
+export const LIST_POSTS_NEWEST = 'LIST_POSTS_NEWEST'
+export const LIST_POSTS_OLDEST = 'LIST_POSTS_OLDEST'
+export const LIST_POSTS_HIGHER_VOTES = 'LIST_POSTS_HIGHER_VOTES'
+export const LIST_POSTS_LOWER_VOTES = 'LIST_POSTS_LOWER_VOTES'
 
 export function listPosts(posts) {
   return {
     type: LIST_POSTS,
+    posts
+  }
+}
+
+export function listPostsNewest(posts){
+  return {
+    type: LIST_POSTS_NEWEST,
+    posts
+  }
+}
+
+export function listPostsOldest(posts){
+  return {
+    type: LIST_POSTS_OLDEST,
+    posts
+  }
+}
+
+export function listPostHigherVotes(posts){
+  return {
+    type: LIST_POSTS_HIGHER_VOTES,
+    posts
+  }
+}
+
+export function listPostLowerVotes(posts){
+  return {
+    type: LIST_POSTS_LOWER_VOTES,
     posts
   }
 }
@@ -63,7 +95,7 @@ export function handleListPosts(){
   return (dispatch) => {
     getPosts()
       .then((posts) => {
-        dispatch(listPosts(posts))
+        dispatch(listPostsNewest(posts))
       })
   }
 }
@@ -73,7 +105,7 @@ export function handleListPostsCategory(category){
   return (dispatch) => {
     getPostsByCategory(category)
       .then((posts) => {         
-        dispatch(listPosts(posts)) 
+        dispatch(listPostsNewest(posts)) 
       })
       .catch((error) => (alert('An error occurred while trying to fetch posts by category. Please try again.')))
   }

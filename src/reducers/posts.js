@@ -4,7 +4,11 @@ import {
   UPDATE_POST,
   REMOVE_POST, 
   INCREASE_POST_SCORE, 
-  DECREASE_POST_SCORE } from '../actions/posts'
+  DECREASE_POST_SCORE, 
+  LIST_POSTS_NEWEST,
+  LIST_POSTS_OLDEST,
+  LIST_POSTS_HIGHER_VOTES,
+  LIST_POSTS_LOWER_VOTES} from '../actions/posts'
 
 
 export default function posts (state = [], action) {
@@ -51,6 +55,23 @@ export default function posts (state = [], action) {
         }
         return post
       })
+
+    case LIST_POSTS_NEWEST:
+      return action.posts.concat()
+        .sort((a, b) => (b.timestamp - a.timestamp))
+
+
+    case LIST_POSTS_OLDEST:
+      return action.posts.concat()
+        .sort((a, b) => (a.timestamp - b.timestamp))
+
+    case LIST_POSTS_HIGHER_VOTES:
+      return action.posts.concat()
+        .sort((a, b) => (b.voteScore - a.voteScore))
+
+    case LIST_POSTS_LOWER_VOTES:
+      return action.posts.concat()
+        .sort((a, b) => (a.voteScore - b.voteScore))
 
     default:
       return state
