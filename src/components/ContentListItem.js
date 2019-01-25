@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import ContentRate from './ContentRate'
 
 import { formatSimpleDate } from '../util/helpers'
+import CommentTemplate from './CommentTemplate';
 
 export default function ContentListItem({item}){
   const {body} = item;
@@ -13,32 +14,24 @@ export default function ContentListItem({item}){
       <div className="row">
         <div className="col-sm-10">
           {
-            item.parentId ? 
-            <h4>{item.author}</h4>:
-            <h4> <Link to={`/posts/${item.id}`}>{item.title}</Link> </h4> 
-          }
-
-          {
-            item.parentId  
-            ?
-            
-            <p className="text-normal">{item.body}</p>
-            
+            item.parentId ?
+            <CommentTemplate item={item} />
             :
-            
             <div>
-              <p className="date-posted">Posted Date: { formatSimpleDate(item.timestamp) }</p>
-              <p className="text-normal">
-                {preview} 
-                {body.length > 80 && ("[...]")}
-              </p>
+              <h4> <Link to={`/posts/${item.id}`}>{item.title}</Link> </h4> 
+              <div>
+                <p className="date-posted">Posted Date: { formatSimpleDate(item.timestamp) }</p>
+                <p className="text-normal">
+                  {preview} 
+                  {body.length > 80 && ("[...]")}
+                </p>
+              </div>
             </div>
           }
         </div>
 
         <div className="col-sm-2">
           <ContentRate item={item} />
-
         </div>
       </div>
     </div>
