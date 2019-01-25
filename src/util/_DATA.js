@@ -106,3 +106,12 @@ export function _saveComment(comment) {
   }
   return fetch(url, request);
 }
+
+export function _deleteComment(commentId){
+  const url = `${BASE_URL}/comments/${commentId}`
+  const request = {
+    method: 'DELETE',
+    headers: {'Content-Type':'application/json', 'Authorization': 'jdskfj333'}
+  }
+  return fetch(url, request);
+}

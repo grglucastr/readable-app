@@ -2,11 +2,13 @@ import {
   getComments, 
   saveComment,
   saveCommentUpVote,
-  saveCommentDownVote
+  saveCommentDownVote,
+  deleteComment,
 } from '../util/api'
 
 export const LIST_COMMENTS = 'LIST_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'
+export const REMOVE_COMMENT = 'REMOVE_COMMENT'
 export const INCREASE_COMMENT_SCORE = 'INCREASE_COMMENT_SCORE'
 export const DECREASE_COMMENT_SCORE = 'DECREASE_COMMENT_SCORE'
 export const CLEAR_COMMENTS_LIST = 'CLEAR_COMMENTS_LIST'
@@ -35,6 +37,13 @@ function increaseCommentScore(comment) {
 function decreaseCommentScore(comment) {
   return {
     type: DECREASE_COMMENT_SCORE,
+    comment
+  }
+}
+
+function removeComment(comment){
+  return {
+    type: REMOVE_COMMENT,
     comment
   }
 }
@@ -84,5 +93,18 @@ export function handleDecreaseComment(commentId) {
     saveCommentDownVote(commentId)
       .then((comment) => (dispatch(decreaseCommentScore(comment))))
       .catch(() => (alert('An error occurred during voting up. Please try again.')))
+  }
+}
+
+export function handleDeleteComment(commentId){
+  return (dispatch) => {
+    deleteComment(commentId)
+      .then((comment) => {
+        alert('Comment deleted')
+        dispatch(removeComment(comment))
+      })
+      .catch((error) => {
+        alert('An error occurred when deleting comment, please try again.')
+      })
   }
 }

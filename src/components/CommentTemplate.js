@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux' 
+import { handleDeleteComment } from '../actions/comments'
 
 class CommentTemplate extends Component {
 
@@ -13,6 +15,13 @@ class CommentTemplate extends Component {
 
   cancelEditing(){
     this.setState({isEditing: false})
+  }
+
+  deleteComment(){
+    const canDelete = window.confirm('Delete this comment? Are you sure?')
+    if(canDelete){
+      this.props.dispatch(handleDeleteComment(this.state.item.id))
+    }
   }
 
 
@@ -50,7 +59,12 @@ class CommentTemplate extends Component {
                 onClick={() => this.editComment()}>
                 Edit
               </button>
-              <button type="button" className="btn btn-link text-danger">Delete</button>
+              <button 
+                type="button" 
+                className="btn btn-link text-danger"
+                onClick={() => this.deleteComment()}>
+                Delete
+              </button>
             </span>
           </div>  
         }
@@ -59,4 +73,4 @@ class CommentTemplate extends Component {
   }
 }
 
-export default CommentTemplate;
+export default connect()(CommentTemplate)

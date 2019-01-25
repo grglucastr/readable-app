@@ -1,6 +1,7 @@
 import { 
   LIST_COMMENTS, 
   ADD_COMMENT,
+  REMOVE_COMMENT,
   INCREASE_COMMENT_SCORE,
   DECREASE_COMMENT_SCORE,
   CLEAR_COMMENTS_LIST
@@ -29,6 +30,9 @@ export default function comments (state = [], action) {
 
     case CLEAR_COMMENTS_LIST: 
       return action.comments
+    
+    case REMOVE_COMMENT:
+      return state.filter((comment) => (comment.id !== action.comment.id))
 
     default:
       return state

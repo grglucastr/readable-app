@@ -11,7 +11,8 @@ import {
   _getComments,
   _saveComment,
   _saveCommentDownVote,
-  _saveCommentUpVote
+  _saveCommentUpVote,
+  _deleteComment
 } from './_DATA'
 
 export function getPosts() {
@@ -117,6 +118,14 @@ export function getComments(postId) {
 export function saveComment(comment) {
   return new Promise((resolve, reject) => {
     _saveComment(comment)
+      .then((response) => resolve(response.json()))
+      .catch((error) => reject(error))
+  })
+}
+
+export function deleteComment(commentId){
+  return new Promise((resolve, reject) => {
+    _deleteComment(commentId)
       .then((response) => resolve(response.json()))
       .catch((error) => reject(error))
   })
