@@ -1,6 +1,7 @@
 import {
   getComments, 
   saveComment,
+  saveCommentChanges,
   saveCommentUpVote,
   saveCommentDownVote,
   deleteComment,
@@ -9,6 +10,7 @@ import {
 export const LIST_COMMENTS = 'LIST_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const REMOVE_COMMENT = 'REMOVE_COMMENT'
+export const UPDATE_COMMENT = 'UPDATE_COMMENT'
 export const INCREASE_COMMENT_SCORE = 'INCREASE_COMMENT_SCORE'
 export const DECREASE_COMMENT_SCORE = 'DECREASE_COMMENT_SCORE'
 export const CLEAR_COMMENTS_LIST = 'CLEAR_COMMENTS_LIST'
@@ -44,6 +46,13 @@ function decreaseCommentScore(comment) {
 function removeComment(comment){
   return {
     type: REMOVE_COMMENT,
+    comment
+  }
+}
+
+function updateComment(comment){
+  return {
+    type: UPDATE_COMMENT,
     comment
   }
 }
@@ -105,6 +114,16 @@ export function handleDeleteComment(commentId){
       })
       .catch((error) => {
         alert('An error occurred when deleting comment, please try again.')
+      })
+  }
+}
+
+export function handleUpdateComment(comment){
+  return (dispatch) => {
+    saveCommentChanges(comment)
+      .then((commentUpdated) => {
+        alert('Comment Updated!')
+        dispatch(updateComment(commentUpdated))
       })
   }
 }

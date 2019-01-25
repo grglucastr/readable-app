@@ -104,7 +104,21 @@ export function _saveComment(comment) {
     headers: {'Content-Type':'application/json', 'Authorization': 'jdskfj333'},
     body: JSON.stringify(comment)
   }
-  return fetch(url, request);
+  return fetch(url, request)
+}
+
+export function _saveCommentChanges(comment) {
+  const theNewComment = {
+    timestamp: new Date().getTime(),
+    body: comment.body
+  }
+  const url = `${BASE_URL}/comments/${comment.id}`
+  const request = {
+    method: 'put',
+    headers: {'Content-Type':'application/json', 'Authorization': 'jdskfj333'},
+    body: JSON.stringify(theNewComment)
+  }
+  return fetch(url, request)
 }
 
 export function _deleteComment(commentId){
@@ -113,5 +127,5 @@ export function _deleteComment(commentId){
     method: 'DELETE',
     headers: {'Content-Type':'application/json', 'Authorization': 'jdskfj333'}
   }
-  return fetch(url, request);
+  return fetch(url, request)
 }

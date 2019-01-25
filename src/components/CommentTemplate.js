@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux' 
-import { handleDeleteComment } from '../actions/comments'
+import { handleDeleteComment, handleUpdateComment } from '../actions/comments'
 
 class CommentTemplate extends Component {
 
@@ -9,11 +9,21 @@ class CommentTemplate extends Component {
     isEditing: false,
   }
 
+  onInputChange(e){
+    const { value } = e.target
+    this.setState({item: Object.assign({}, this.state.item, {body: value})})
+  }
+
   editComment(){
     this.setState({isEditing: true})
   }
 
   cancelEditing(){
+    this.setState({isEditing: false})
+  }
+
+  saveChanges(){
+    this.props.dispatch(handleUpdateComment(this.state.item))
     this.setState({isEditing: false})
   }
 
@@ -35,12 +45,18 @@ class CommentTemplate extends Component {
           isEditing ?
           <div>
             <textarea 
+              onChange={(e) => this.onInputChange(e)}
               className="form-control"
               value={item.body}
               >
             </textarea>
             <span className="comment-action-buttons">
-              <button type="button" className="btn btn-link">Save</button>
+              <button 
+                type="button" 
+                className="btn btn-link"
+                onClick={() => this.saveChanges()}>
+                Save
+              </button>
               <button 
                 type="button" 
                 className="btn btn-link text-danger" 

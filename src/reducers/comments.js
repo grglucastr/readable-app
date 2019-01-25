@@ -1,6 +1,7 @@
 import { 
   LIST_COMMENTS, 
   ADD_COMMENT,
+  UPDATE_COMMENT,
   REMOVE_COMMENT,
   INCREASE_COMMENT_SCORE,
   DECREASE_COMMENT_SCORE,
@@ -13,6 +14,14 @@ export default function comments (state = [], action) {
     case LIST_COMMENTS:
       return action.comments
     
+    case UPDATE_COMMENT:
+      return state.map((comment) => {
+        if(comment.id === action.comment.id){
+          return action.comment
+        }
+        return comment
+      })
+
     case ADD_COMMENT:
       return [
         ...state,

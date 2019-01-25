@@ -10,6 +10,7 @@ import {
   _getCategories,
   _getComments,
   _saveComment,
+  _saveCommentChanges,
   _saveCommentDownVote,
   _saveCommentUpVote,
   _deleteComment
@@ -119,6 +120,14 @@ export function saveComment(comment) {
   return new Promise((resolve, reject) => {
     _saveComment(comment)
       .then((response) => resolve(response.json()))
+      .catch((error) => reject(error))
+  })
+}
+
+export function saveCommentChanges(comment) {
+  return new Promise((resolve, reject) => {
+    _saveCommentChanges(comment)
+      .then((commentChanged) => resolve(commentChanged))
       .catch((error) => reject(error))
   })
 }
