@@ -6,6 +6,7 @@ class CommentTemplate extends Component {
 
   state = {
     item: this.props.item,
+    commentBefore: '',
     isEditing: false,
   }
 
@@ -15,11 +16,12 @@ class CommentTemplate extends Component {
   }
 
   editComment(){
-    this.setState({isEditing: true})
+    const { body } = this.state.item    
+    this.setState({isEditing: true, commentBefore: body})
   }
 
   cancelEditing(){
-    this.setState({isEditing: false})
+    this.setState({isEditing: false, item: Object.assign({}, this.state.item, {body: this.state.commentBefore})})
   }
 
   saveChanges(){
