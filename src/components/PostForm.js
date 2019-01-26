@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {Redirect} from 'react-router-dom'
+import {Redirect, withRouter} from 'react-router-dom'
 import uuidv4 from 'uuid/v4'
 
 import { handleAddPost, handleUpdatePost } from '../actions/posts';
@@ -31,7 +31,7 @@ class PostForm extends Component {
           post
         })
       })
-    }    
+    }   
   }
 
   handleInputChange = (e) => {
@@ -76,18 +76,29 @@ class PostForm extends Component {
     this.cleanFields()
   }
 
-
-  cleanFields = () => {
-    this.setState({post: {
-      title:'',
-      author: '',
-      category:'',
-      body: '',
-    }})
+  cleanFields = () => {    
+    this.setState({
+      post: {
+        id: uuidv4(),
+        timestamp: new Date().getTime(),
+        title:'',
+        author: '',
+        category:'',
+        body: '',
+      },
+      isEditing: false,
+      toPostDetail: false,
+    })
   }
 
   render() {
 
+    if(this.props.location.pathname === '/post'){
+      if(this.state.isEditing){
+        window.location.reload()
+      }
+    }
+    
     const { categories } = this.props
 
     if(this.state.toHome === true){
@@ -101,7 +112,6 @@ class PostForm extends Component {
         <Redirect to={`/posts/${this.state.post.id}`} />
       )
     }
-
 
     return ( 
       <div>
@@ -170,9 +180,7 @@ class PostForm extends Component {
                 this.state.isEditing ? 'Update Post' : 'Submit Post'
               }
             </button>
-
           </div>
-
         </form>
       </div>
     )
@@ -185,5 +193,4 @@ function mapStateToProps({categories}){
   }
 }
 
-
-export default connect(mapStateToProps)(PostForm);
+export default withRouter(connect(mapStateToProps)(PostForm));
