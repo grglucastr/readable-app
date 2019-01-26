@@ -1,68 +1,81 @@
+This project is part of the course React Developer by Udacity.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is an open source project, you can contribute to it if you want
 
-## Available Scripts
+## Readable App
 
-In the project directory, you can run:
+This is a Post/Comment project. It allows you to post text related to specific categories.
+Assuming you have NodeJS installed on your PC, in the project directory, you can run:
+
+### `npm install`
+This command will download all the libraries necessary to run this project
 
 ### `npm start`
 
-Runs the app in the development mode.<br>
+Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
+The page will reload if you make edits.
 You will also see any lint errors in the console.
 
-### `npm test`
+### backend server
+The configuration to access the backend web service is under the following path: 
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+/src/util/_DATA.js
+```
 
-### `npm run build`
+There, you can set the configuration for the backend server url and also the port to access it. The default url is:
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[http://localhost:3001](http://localhost:3001)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### project components tree view
+```bash
+src
+└─┬ src/components/App/App
+  ├── src/components/Categories/Categories
+  ├─┬ src/components/Home/Home
+  │ ├─┬ src/components/ContentList/ContentList
+  │ │ └── src/components/ContentListItem/ContentListItem
+  │ │   ├── src/components/CommentTemplate/CommentTemplate
+  │ │   └── src/components/ContentRate/ContentRate
+  │ └── src/components/SortContentList/SortContentList
+  ├─┬ src/components/PostContainer/PostContainer
+  │ ├─┬ src/components/ContentList/ContentList
+  │ │ └─┬ src/components/ContentListItem/ContentListItem
+  │ │   ├── src/components/CommentTemplate/CommentTemplate
+  │ │   └── src/components/ContentRate/ContentRate
+  │ ├─┬ src/components/PostContent/PostContent
+  │ │ └── src/components/ContentRate/ContentRate
+  │ └── src/components/PostNewComment/PostNewComment
+  ├── src/components/PostForm/PostForm
+  └─┬ src/components/PostsByCategory/PostsByCategory
+    ├─┬ src/components/ContentList/ContentList
+    │ └─┬ src/components/ContentListItem/ContentListItem
+    │   ├── src/components/CommentTemplate/CommentTemplate
+    │   └── src/components/ContentRate/ContentRate
+    └── src/components/SortContentList/SortContentList
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### project components hierarchy
 
-### `npm run eject`
+[![N|Solid](https://cdn1.imggmi.com/uploads/2019/1/26/1ebee0e53c5d56e7575ea94bcef4c0b1-full.png)](https://nodesource.com/products/nsolid)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### project components description
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+| Component | Description |
+| ------ | ------ |
+| App | Start Component |
+| Categories | List all the categories with a link to filter all posts related to clicked category |
+| ContentList | This component renders a list of posts and comments |
+| ContentListItem | This component renders a single item of a list (post or comment) |
+| ContentRate | Component responsible to increase and decrease item score (post or comment) |
+| CommentTemplate | Component responsible for render comment and  handling comment edit  |
+| Home | This component renders a list of posts in the home screen |
+| Nav | Component render nav options |
+| PostByCategory | Component renders a list of posts based on a specific category selected on the list of categories |
+| PostContainer | This components renders all related to a single post |
+| PostContent | Renders the title and body of a post |
+| PostNewComment | Renders forms and controls for edit comment  |
+| PostForm | Component to render form to add and edit post |
+| SortContentList | Component responsible to sort the items of a list |
